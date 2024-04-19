@@ -27,7 +27,14 @@ if [ -z "$INPUT_REGION" ]; then
   exit 1
 fi
 
-coscmd config -a $INPUT_SECRET_ID -s $INPUT_SECRET_KEY -b $INPUT_BUCKET -r $INPUT_REGION -m 30
+if [ -z "$INPUT_ENDPOINT" ]; then
+  coscmd config -a $INPUT_SECRET_ID -s $INPUT_SECRET_KEY -b $INPUT_BUCKET -e $INPUT_ENDPOINT -m 30
+  else
+  coscmd config -a $INPUT_SECRET_ID -s $INPUT_SECRET_KEY -b $INPUT_BUCKET -r $INPUT_REGION -m 30
+fi
+
+
+
 
 IFS="&&"
 arrARGS=($INPUT_ARGS)
